@@ -1,9 +1,7 @@
-# Load model directly
-from transformers import AutoTokenizer, AutoModelForCausalLM
+# Use a pipeline as a high-level helper
 from transformers import pipeline
 
-# Initialize the text generation pipeline
-generator = pipeline('text-generation', model='bigscience/Bloom7b1')
+pipe = pipeline("text-generation", model="bigscience/bloom-7b1")
 
 # Define the prompt
 prompt = "What do you know about Nigeria"
