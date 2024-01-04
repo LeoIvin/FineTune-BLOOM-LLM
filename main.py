@@ -14,34 +14,18 @@ dataset = dataset['train'].train_test_split(test_size=0.1, seed=42)
 train_dataset = dataset['train']
 eval_dataset = dataset['test']
 
-# tokenize prompts
-def tokenize_function(examples):
-    return tokenizer(examples['PROMPT'], 
-    truncation=True, max_length=512)
 
+# Tokenize function
+def tokenize_function(examples):
+    return tokenizer(examples['PROMPT'], examples['RESPONSE'], examples['CONTEXT'], examples['INTENT'], padding='max_length', truncation=True, max_length=512)
+
+# Tokenize the dataset
 tokenized_dataset = dataset.map(tokenize_function, batched=True)
 
-# responses
-def tokenize_responses(examples):
-    return tokenizer(examples['RESPONSE'], 
-    truncation=True, max_length=512)
-
-tokenized_resp = dataset.map(tokenize_responses, batched=True)
-
-# context
-def tokenize_context(examples):
-    return tokenizer(examples['CONTEXT'], 
-    truncation=True, max_length=512)
-
-tokenized_contx = dataset.map(tokenize_context, batched=True)
-
-# intent
-def tokenize_intent(examples):
-    return tokenizer(examples['INTENT'], 
-    truncation=True, max_length=512)
-
-tokenized_int = dataset.map(tokenize_intent, batched=True)
-
+# Split the tokenized dataset
+tokenized_dataset = tokenized_dataset['train'].train_test_split(test_size=0.1, seed=42)
+train_dataset = tokenized_dataset['train']
+eval_dataset = tokenized_dataset['test']
 
 
 training_args = TrainingArguments(
