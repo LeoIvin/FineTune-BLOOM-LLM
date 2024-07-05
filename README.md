@@ -86,7 +86,7 @@ The goal of this project is to fine-tune the BLOOM model on a dataset containing
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/fine-tune-bloom.git
+    git clone https://github.com/LeoIvin/FineTune-BLOOM-LLM.git
     ```
 
 2. **Navigate to the project directory:**
