@@ -3,9 +3,6 @@ import pandas as pd
 from datasets import load_dataset
 import os
 
-# Check for other heavy processes and terminate if any
-os.system("pkill -f heavy_process_name")
-
 # Load the tokenizer and model
 tokenizer = AutoTokenizer.from_pretrained('bigscience/bloom-1b1')
 model = AutoModelForCausalLM.from_pretrained('bigscience/bloom-1b1')
@@ -35,7 +32,7 @@ training_args = TrainingArguments(
     num_train_epochs=3,
     per_device_train_batch_size=5,
     per_device_eval_batch_size=64,
-    gradient_accumulation_steps=4,  # Added gradient accumulation
+    gradient_accumulation_steps=4, 
     warmup_steps=500,
     weight_decay=0.01,
     logging_dir='./logs',
